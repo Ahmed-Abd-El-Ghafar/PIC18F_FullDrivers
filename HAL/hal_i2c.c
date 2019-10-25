@@ -8,6 +8,12 @@ static I2C_Module1_Init(void){
 static I2C_Module2_Init(void){}
 static I2C_Module3_Init(void){}
 
+/**
+  * @brief  
+  * @param  
+  * @param  
+  * @retval 
+  */
 void I2C_Init(i2c_module_t module){
     switch(module){
         case I2C_MODULE1: I2C_Module1_Init(); break;
@@ -16,6 +22,12 @@ void I2C_Init(i2c_module_t module){
     }
 }
 
+/**
+  * @brief  
+  * @param  
+  * @param  
+  * @retval 
+  */
 static void I2C_Ack(void){
     /* Acknowledge */
     SSPCON2_REG_PTR->Register_Bits.Bit5 = 0; /* ACKDT */
@@ -25,6 +37,12 @@ static void I2C_Ack(void){
     while(SSPCON2_REG_PTR->Register_Bits.Bit4);
 }
 
+/**
+  * @brief  
+  * @param  
+  * @param  
+  * @retval 
+  */
 static void I2C_Nack(void){
     /* Not Acknowledge */
     SSPCON2_REG_PTR->Register_Bits.Bit5 = 1; /* ACKDT */
@@ -34,6 +52,12 @@ static void I2C_Nack(void){
     while(SSPCON2_REG_PTR->Register_Bits.Bit4);
 }
 
+/**
+  * @brief  
+  * @param  
+  * @param  
+  * @retval 
+  */
 unsigned short I2C1_Start(void){
     /* Send start pulse */
     SSPCON2_REG_PTR->Register_Bits.Bit0 = 1;
@@ -50,10 +74,36 @@ unsigned short I2C1_Start(void){
     }
 }
 
+/**
+  * @brief  
+  * @param  
+  * @param  
+  * @retval 
+  */
 void I2C1_Repeated_Start(void){}
+
+/**
+  * @brief  
+  * @param  
+  * @param  
+  * @retval 
+  */
 unsigned short I2C1_Is_Idle(void){}
+
+/**
+  * @brief  
+  * @param  
+  * @param  
+  * @retval 
+  */
 unsigned short I2C1_Rd(unsigned short ack){}
 
+/**
+  * @brief  
+  * @param  
+  * @param  
+  * @retval 
+  */
 static void I2C1_Ready_Check(void){
     /* Wait the SSPBUF when is full or Transmit is in progress */
     while((SSPSTAT_REG_PTR->Register_Bits.Bit0) || 
@@ -63,6 +113,12 @@ static void I2C1_Ready_Check(void){
     PIR1_REG_PTR->Register_Bits.Bit3 = 0;
 }
 
+/**
+  * @brief  
+  * @param  
+  * @param  
+  * @retval 
+  */
 unsigned short I2C1_Wr(unsigned short value){
     /* Write data to SSPBUF*/
     SSPBUF_REG_PTR->Register = value;
@@ -77,6 +133,12 @@ unsigned short I2C1_Wr(unsigned short value){
     }
 }
 
+/**
+  * @brief  
+  * @param  
+  * @param  
+  * @retval 
+  */
 unsigned short I2C1_Stop(void){
     /* Waiting to transmit/receive */
     I2C1_Ready_Check();
