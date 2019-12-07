@@ -120,5 +120,8 @@ void port_init_on_off(Register_t *reg, power_port_t state);
 void write_pin(Register_t *reg, pins_t pin, power_t state);
 void write_value_to_port(Register_t *reg, uint16_t value);
 void pin_init_input_output(Register_t *reg, pins_t pin, state_t state);
+void port_set_specific_pins(Register_t *reg, uint8_t value);
+void port_clear_specific_pins(Register_t *reg, uint8_t value);
+uint8_t read_port(Register_t *reg);
 
 #endif

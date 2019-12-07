@@ -57,3 +57,15 @@ void pin_init_input_output(Register_t *reg, pins_t pin, state_t state){
 void write_value_to_port(Register_t *reg, uint16_t value){
     (*reg).Register = value;
 }
+
+void port_set_specific_pins(Register_t *reg, uint8_t value){
+    (*reg).Register |= (value << 0);
+}
+
+void port_clear_specific_pins(Register_t *reg, uint8_t value){
+    ((*reg).Register) &= ~(value << 0);
+}
+
+uint8_t read_port(Register_t *reg){
+     return (*reg).Register;
+}
