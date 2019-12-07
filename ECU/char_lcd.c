@@ -1,6 +1,12 @@
 
 #include "char_lcd.h"
 
+/**
+  * @brief   
+  * @param  
+  * @param 
+  * @retval 
+  */
 static void lcd_send_eneble(void){
     write_pin(LCD_EN_PORT, LCD_EN, PIN_ON);
     Delay_us(3);
@@ -8,6 +14,12 @@ static void lcd_send_eneble(void){
     Delay_us(3);
 }
 
+/**
+  * @brief   
+  * @param  
+  * @param 
+  * @retval 
+  */
 void Lcd_Cmd(uint8_t command){
     write_pin(LCD_RS_PORT, LCD_RS, PIN_OFF);
     #if CHAR_LCD_MODE==4
@@ -26,6 +38,12 @@ void Lcd_Cmd(uint8_t command){
     #endif
 }
 
+/**
+  * @brief   
+  * @param  
+  * @param 
+  * @retval 
+  */
 static void Lcd_Data(uint8_t _data){
     write_pin(LCD_RS_PORT, LCD_RS, PIN_ON);
     #if CHAR_LCD_MODE==4
@@ -44,6 +62,12 @@ static void Lcd_Data(uint8_t _data){
     #endif
 }
 
+/**
+  * @brief   
+  * @param  
+  * @param 
+  * @retval 
+  */
 void Lcd_Init(void){
     pin_init_input_output(LCD_RS_DIR, LCD_RS, OUTPUT);
     pin_init_input_output(LCD_EN_DIR, LCD_EN, OUTPUT);
@@ -100,6 +124,12 @@ void Lcd_Init(void){
     #endif
 }
 
+/**
+  * @brief   
+  * @param  
+  * @param 
+  * @retval 
+  */
 static void lcd_set_cursor(uint8_t row, uint8_t col){
     row--;
     col--;
@@ -107,6 +137,12 @@ static void lcd_set_cursor(uint8_t row, uint8_t col){
     Delay_ms(5);
 }
 
+/**
+  * @brief   
+  * @param  
+  * @param 
+  * @retval 
+  */
 void Lcd_Out(uint8_t row, uint8_t column, uint8_t *text){
     lcd_set_cursor(row, column);
     while(*text) {
@@ -115,6 +151,12 @@ void Lcd_Out(uint8_t row, uint8_t column, uint8_t *text){
     }
 }
 
+/**
+  * @brief   
+  * @param  
+  * @param 
+  * @retval 
+  */
 void Lcd_Out_Cp(uint8_t *text){
     while(*text) {
         Lcd_Data(*text++);
@@ -122,17 +164,35 @@ void Lcd_Out_Cp(uint8_t *text){
     }
 }
 
+/**
+  * @brief   
+  * @param  
+  * @param 
+  * @retval 
+  */
 void Lcd_Chr(uint8_t row, uint8_t column, uint8_t out_char){
     lcd_set_cursor(row, column);
     Lcd_Data(out_char);
     Delay_ms(2);
 }
 
+/**
+  * @brief   
+  * @param  
+  * @param 
+  * @retval 
+  */
 void Lcd_Chr_Cp(uint8_t out_char){
     Lcd_Data(out_char);
     Delay_ms(2);
 }
 
+/**
+  * @brief   
+  * @param  
+  * @param 
+  * @retval 
+  */
 void lcd_build_customChar(uint8_t loc,uint8_t row, uint8_t column, const char array[]){
     short i;
     if(loc < 8){
