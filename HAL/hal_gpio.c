@@ -1,9 +1,12 @@
 
 #include "hal_gpio.h"
 
-/*
-
-*/
+/**
+  * @brief   
+  * @param  
+  * @param 
+  * @retval 
+  */
 void port_init_input_output(Register_t *reg, state_t state){
     if(OUTPUT == state){
         reg->Register = PORT_OUTPUT;
@@ -16,6 +19,12 @@ void port_init_input_output(Register_t *reg, state_t state){
     }
 }
 
+/**
+  * @brief   
+  * @param  
+  * @param 
+  * @retval 
+  */
 void port_init_on_off(Register_t *reg, power_port_t state){
     if(P_OFF == state){
         reg->Register = PORT_OFF;
@@ -28,6 +37,12 @@ void port_init_on_off(Register_t *reg, power_port_t state){
     }
 }
 
+/**
+  * @brief   
+  * @param  
+  * @param 
+  * @retval 
+  */
 void write_pin(Register_t *reg, pins_t pin, power_t state){
     switch(pin){
          case PIN0 : reg->Register_Bits.Bit0 = state;  break;
@@ -41,6 +56,12 @@ void write_pin(Register_t *reg, pins_t pin, power_t state){
     }
 }
 
+/**
+  * @brief   
+  * @param  
+  * @param 
+  * @retval 
+  */
 void pin_init_input_output(Register_t *reg, pins_t pin, state_t state){
     switch(pin){
          case PIN0 : reg->Register_Bits.Bit0 = state;  break;
@@ -54,18 +75,42 @@ void pin_init_input_output(Register_t *reg, pins_t pin, state_t state){
     }
 }
 
+/**
+  * @brief   
+  * @param  
+  * @param 
+  * @retval 
+  */
 void write_value_to_port(Register_t *reg, uint16_t value){
     (*reg).Register = value;
 }
 
+/**
+  * @brief   
+  * @param  
+  * @param 
+  * @retval 
+  */
 void port_set_specific_pins(Register_t *reg, uint8_t value){
     (*reg).Register |= (value << 0);
 }
 
+/**
+  * @brief   
+  * @param  
+  * @param 
+  * @retval 
+  */
 void port_clear_specific_pins(Register_t *reg, uint8_t value){
     ((*reg).Register) &= ~(value << 0);
 }
 
+/**
+  * @brief   
+  * @param  
+  * @param 
+  * @retval 
+  */
 uint8_t read_port(Register_t *reg){
      return (*reg).Register;
 }
