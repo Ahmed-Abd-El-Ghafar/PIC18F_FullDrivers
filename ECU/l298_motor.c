@@ -17,6 +17,12 @@
     write_pin(arr[0], PIN2, OFF);
 }*/
 
+/**
+  * @brief   
+  * @param  
+  * @param 
+  * @retval 
+  */
 void motor_forward(Register_t *reg, pins_t PIN1,pins_t PIN2){
     if(reg == PORTA_REG_PTR){
         pin_init_input_output(TRISA_REG_PTR, PIN1, OUTPUT);
@@ -39,6 +45,12 @@ void motor_forward(Register_t *reg, pins_t PIN1,pins_t PIN2){
     write_pin(reg, PIN2, OFF);
 }
 
+/**
+  * @brief   
+  * @param  
+  * @param 
+  * @retval 
+  */
 void motor_backword(Register_t *reg, pins_t PIN1,pins_t pin2){
     if(reg == PORTA_REG_PTR){
         pin_init_input_output(TRISA_REG_PTR, PIN1, OUTPUT);
@@ -63,6 +75,12 @@ void motor_backword(Register_t *reg, pins_t PIN1,pins_t pin2){
     write_pin(reg, PIN2, ON);
 }
 
+/**
+  * @brief   
+  * @param  
+  * @param 
+  * @retval 
+  */
 void motor_stop(Register_t *reg, pins_t PIN1,pins_t pin2){
     if(reg == PORTA_REG_PTR){
         pin_init_input_output(TRISA_REG_PTR, PIN1, OUTPUT);
