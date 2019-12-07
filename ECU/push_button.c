@@ -1,6 +1,12 @@
 
 #include "push_button.h"
 
+/**
+  * @brief   
+  * @param  
+  * @param 
+  * @retval 
+  */
 button_status_t read_push_button(Register_t *reg, pins_t pin){
     switch(pin){
          case PIN0 : return reg->Register_Bits.Bit0; break;
